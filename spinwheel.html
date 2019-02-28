@@ -2,7 +2,9 @@
 
 <head>
     <title>Spinwheel</title>
+    <link rel="stylesheet" href="css/font-awesome.min.css">
     <style>
+        /*WHEEL*/
         #wheel {
             width: 250px;
             height: 250px;
@@ -13,6 +15,7 @@
             box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 10px, rgba(0, 0, 0, 0.05) 0px 3px 0px;
             transform: rotate(0deg);
         }
+
 
         #wheel:before {
             content: '';
@@ -48,13 +51,19 @@
             opacity: 1;
         }
 
+        .icons{
+            position: fixed;
+            top: -80px;
+            left: -20px;
+        }
+
         #wheel div.sec:nth-child(1) {
             transform: rotate(90deg);
             -webkit-transform: rotate(90deg);
             -moz-transform: rotate(90deg);
             -o-transform: rotate(90deg);
             -ms-transform: rotate(90deg);
-            border-color: #16a085 transparent;
+            border-color: #f10b03 transparent;
         }
 
         #wheel div.sec:nth-child(2) {
@@ -63,7 +72,7 @@
             -moz-transform: rotate(180deg);
             -o-transform: rotate(180deg);
             -ms-transform: rotate(180deg);
-            border-color: #e2d132 transparent;
+            border-color: #61c50f transparent;
         }
 
         #wheel div.sec:nth-child(3) {
@@ -72,7 +81,7 @@
             -moz-transform: rotate(270deg);
             -o-transform: rotate(270deg);
             -ms-transform: rotate(270deg);
-            border-color: #f16e03 transparent;
+            border-color: #f8f52a transparent;
         }
 
         #wheel div.sec:nth-child(4) {
@@ -81,25 +90,7 @@
             -moz-transform: rotate(360deg);
             -o-transform: rotate(360deg);
             -ms-transform: rotate(360deg);
-            border-color: #ff0000 transparent;
-        }
-
-        #wheel div.sec:nth-child(5) {
-            transform: rotate(300deg);
-            -webkit-transform: rotate(300deg);
-            -moz-transform: rotate(300deg);
-            -o-transform: rotate(300deg);
-            -ms-transform: rotate(300deg);
-            border-color: #d35400 transparent;
-        }
-
-        #wheel div.sec:nth-child(6) {
-            transform: rotate(360deg);
-            -webkit-transform: rotate(360deg);
-            -moz-transform: rotate(360deg);
-            -o-transform: rotate(360deg);
-            -ms-transform: rotate(360deg);
-            border-color: #c0392b transparent;
+            border-color: #f88706 transparent;
         }
     </style>
 </head>
@@ -108,10 +99,12 @@
     <button onclick="clicked()">Spin</button>
     <div id="wheel">
         <div id="inner-wheel">
-            <div class="sec"><span class="fa fa-bell-o"></span></div>
-            <div class="sec"><span class="fa fa-comment-o"></span></div>
-            <div class="sec"><span class="fa fa-smile-o"></span></div>
-            <div class="sec"><span class="fa fa-heart-o"></span></div>
+            <div class="sec">
+                <span class="icons fa fa-gift">Rs.10</span>
+            </div>
+            <div class="sec"><span class="icons fa fa-gift">Rs.5</span></div>
+            <div class="sec"><span class="icons fa fa-gift">Rs.2</span></div>
+            <div class="sec"><span class="icons fa fa-gift">Re.1</span></div>
         </div>
     </div>
     
@@ -155,10 +148,15 @@
             }
 
             function spin(val) {
+                
                 var deg = 90 * val;
                 scores[val - 1]++;
+                var n=getDecimal(s / 360);
 
-                //document.getElementById("inner-wheel").style.transform = 'rotate(' + s + 'deg)';
+                times += 360 * 2;
+                
+                s=deg+times;
+                document.getElementById("inner-wheel").style.transform = 'rotate(' + s + 'deg)';
                 console.log("Price is "+prices[val-1]);
                 document.getElementById("prices").innerHTML += "Price is "+prices[val-1]+"<br>";
 
